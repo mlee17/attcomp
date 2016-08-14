@@ -8,7 +8,6 @@ stimfiles = dir(sprintf('%s1*',stimdir));
 
 for i = 1:length(stimfiles)
     load(sprintf('%s%s', stimdir, stimfiles(i).name));
-    % e = getTaskParameters(myscreen,task);
     
     for p = 1:length(task{1}.randVars.unattendedPair)
         if task{1}.randVars.unattendedPair{p} == [1 2]
@@ -24,7 +23,14 @@ for i = 1:length(stimfiles)
     task{1}.randVars.calculated_names_{5} = 'unattendedPairType'; 
     task{1}.randVars.varlen_(8) = length(task{1}.randVars.unattendedPairType);
     task{1}.randVars.n_ = 8;
-    
+
+    e = getTaskParameters(myscreen,task);
+    if any(isnan(e.trials(end).volnum))
+        clear tmp
+        tmp=find(myscreen.events.data==6);
+        myscreen.events.n=tmp(end-1);
+    end
+            
     % UNATTENDED SIDE
     % 1. Low contrast
     % 1-1) loc 1
