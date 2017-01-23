@@ -1,12 +1,6 @@
 function [roi, tseriesROI] = eventRelatedROI(view, varargin)%,overlayNum,scan,x,y,s,roi)
 % eventRelatedPlot.m
-%
-%       $Id$	
-%      usage: eventRelatedPlot()
-%         by: justin gardner
-%       date: 10/20/06
-%    purpose: 
-%
+
 eval(evalargs(varargin,0,0,{'V1','V2','V3'}));
 scan = 1;
 if isempty(varargin)
